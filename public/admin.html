@@ -1,0 +1,1297 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin — ENCROZAA</title>
+  <link rel="icon" type="image/x-icon" href="assets/img/560360537_17845627944583430_485295394664470441_n-modified.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@200;300;400;500&display=swap"
+    rel="stylesheet">
+
+
+  <link rel="stylesheet" href="assets/css/admin.css">
+
+  <meta name="robots" content="noindex, nofollow">
+</head>
+
+<body>
+
+  <!-- AUTH -->
+  <div class="auth-screen" id="auth-screen">
+    <div class="auth-box">
+      <div class="auth-logo">ENCROZAA</div>
+      <div class="auth-sub">Admin Portal</div>
+      <div class="auth-err" id="auth-err"></div>
+      <input type="email" id="auth-email" placeholder="Email address">
+      <input type="password" id="auth-pw" placeholder="Password">
+      <button class="btn btn-primary" onclick="doLogin()" style="margin-top:4px;">Sign In</button>
+    </div>
+  </div>
+
+  <!-- TOP BAR -->
+  <div class="topbar">
+    <div class="topbar-logo">ENCROZAA</div>
+    <div class="topbar-title">Collection Admin</div>
+    <button class="topbar-logout" onclick="doLogout()">Sign Out</button>
+  </div>
+
+  <!-- MAIN LAYOUT -->
+  <div class="admin-wrap">
+    <!-- SIDEBAR -->
+    <div class="sidebar">
+      <div class="sidebar-section">Navigation</div>
+      <div class="sidebar-link active" onclick="showSection('dashboard', this)">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="3" y="3" width="7" height="7" />
+          <rect x="14" y="3" width="7" height="7" />
+          <rect x="3" y="14" width="7" height="7" />
+          <rect x="14" y="14" width="7" height="7" />
+        </svg>
+        Dashboard
+      </div>
+      <div class="sidebar-link" onclick="showSection('gems', this)">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polygon points="12 2 22 8.5 22 15.5 12 22 2 15.5 2 8.5" />
+        </svg>
+        Jewellery
+      </div>
+      <div class="sidebar-link" onclick="showSection('categories', this)">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M4 6h16M4 12h8m-8 6h16" />
+        </svg>
+        Categories
+      </div>
+      <div class="sidebar-link" onclick="showSection('homepage', this)">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z" />
+          <polyline points="9 22 9 12 15 12 15 22" />
+        </svg>
+        Homepage Cards
+      </div>
+      <div class="sidebar-link" onclick="showSection('testimonials', this)">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path
+            d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z" />
+        </svg>
+        Testimonials
+      </div>
+      <div class="sidebar-section">Live Site</div>
+      <div class="sidebar-link" onclick="window.open('collection.html','_blank')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6" />
+          <polyline points="15 3 21 3 21 9" />
+          <line x1="10" y1="14" x2="21" y2="3" />
+        </svg>
+        View Collection Page
+      </div>
+      <div class="sidebar-link" onclick="window.open('index.html#shop','_blank')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6" />
+          <polyline points="15 3 21 3 21 9" />
+          <line x1="10" y1="14" x2="21" y2="3" />
+        </svg>
+        View Home Page
+      </div>
+    </div>
+
+    <!-- CONTENT -->
+    <div class="main">
+
+      <!-- ── DASHBOARD ── -->
+      <div id="section-dashboard">
+        <div class="stats-row" id="stats-row">
+          <div class="stat-card">
+            <div class="stat-num" id="stat-gems">—</div>
+            <div class="stat-label">Total Pieces</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-num" id="stat-cats">—</div>
+            <div class="stat-label">Categories</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-num" id="stat-featured">—</div>
+            <div class="stat-label">Featured</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-num" id="stat-rare">—</div>
+            <div class="stat-label">Rare Finds</div>
+          </div>
+        </div>
+        <div class="panel">
+          <div class="panel-head">
+            <div class="panel-title">Recent Additions</div>
+          </div>
+          <div class="panel-body">
+            <table class="data-table" id="recent-table">
+              <thead>
+                <tr>
+                  <th></th>
+                  <th>Name</th>
+                  <th>Category</th>
+                  <th>Price</th>
+                  <th>Badge</th>
+                </tr>
+              </thead>
+              <tbody id="recent-tbody">
+                <tr>
+                  <td colspan="5" class="loading-row">Loading…</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── GEMS ── -->
+      <div id="section-gems" style="display:none;">
+        <div class="panel">
+          <div class="panel-head">
+            <div class="panel-title">All Collection Items</div>
+            <div style="display:flex; gap:10px;">
+              <button class="btn btn-gold" onclick="openGemModal(null)">+ Add Item</button>
+            </div>
+          </div>
+          <div class="panel-body" style="padding:0;overflow-x:auto;">
+            <table class="data-table" id="gems-table">
+              <thead>
+                <tr>
+                  <th></th>
+                  <th>Name</th>
+                  <th>Category</th>
+                  <th>Cut</th>
+                  <th>Price</th>
+                  <th>Badge</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="gems-tbody">
+                <tr>
+                  <td colspan="7" class="loading-row">Loading…</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── CATEGORIES ── -->
+      <div id="section-categories" style="display:none;">
+        <div class="panel">
+          <div class="panel-head">
+            <div class="panel-title">Manage Categories</div>
+            <button class="btn btn-gold" onclick="openCatModal(null)">+ Add Category</button>
+          </div>
+          <div class="panel-body">
+            <p style="font-size:.82rem;color:var(--ash);margin-bottom:18px;">Categories appear as filter buttons on the
+              collection page. The "All" button is always shown automatically.</p>
+            <div class="cats-list" id="cats-list">
+              <div class="loading-row">Loading…</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── HOMEPAGE FEATURED GEMS ── -->
+      <div id="section-homepage" style="display:none;">
+        <div class="panel">
+          <div class="panel-head">
+            <div class="panel-title">Homepage Featured Pieces</div>
+            <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;">
+              <span style="font-size:.72rem;color:var(--silver);letter-spacing:.08em;">Select up to 6 pieces to feature
+                on
+                the homepage. Drag to reorder.</span>
+              <button class="btn btn-gold" onclick="saveHomepageOrder()">Save Order</button>
+            </div>
+          </div>
+          <div class="panel-body">
+            <p style="font-size:.82rem;color:var(--ash);margin-bottom:18px;">These pieces appear in the Featured
+              Collection section on the home page. Toggle to show/hide each piece, and drag to reorder them.</p>
+            <div id="homepage-gems-list" style="display:flex;flex-direction:column;gap:10px;">
+              <div class="loading-row">Loading pieces…</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── TESTIMONIALS ── -->
+      <div id="section-testimonials" style="display:none;">
+        <div class="panel">
+          <div class="panel-head">
+            <div class="panel-title">Manage Testimonials</div>
+            <button class="btn btn-gold" onclick="openTestiModal(null)">+ Add Testimonial</button>
+          </div>
+          <div class="panel-body" style="padding:0;overflow-x:auto;">
+            <table class="data-table" id="testi-table">
+              <thead>
+                <tr>
+                  <th>Author</th>
+                  <th>Review</th>
+                  <th>Piece Ref</th>
+                  <th>Rating</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="testi-tbody">
+                <tr>
+                  <td colspan="5" class="loading-row">Loading…</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /main -->
+  </div>
+
+  <!-- GEM MODAL -->
+  <div class="modal-bg" id="gem-modal">
+    <div class="modal">
+      <div class="modal-head">
+        <div class="modal-title" id="gem-modal-title">Add Item</div>
+        <button class="modal-close" onclick="closeGemModal()">✕</button>
+      </div>
+      <div class="tabs">
+        <div class="tab active" onclick="switchTab('basic',this)">Basic Info</div>
+        <div class="tab" onclick="switchTab('specs',this)">Specifications</div>
+        <div class="tab" onclick="switchTab('images',this)">Images</div>
+      </div>
+
+      <!-- Basic tab -->
+      <div id="tab-basic">
+        <label><strong>If an empty field is required type "None"</strong></label>
+        <div class="form-grid">
+          <div class="form-group"><label>Item Name *</label><input id="g-name"
+              placeholder="e.g. Sapphire Ring or Royal Blue Sapphire"></div>
+          <div class="form-group"><label>Cut / Shape *</label><input id="g-cut" placeholder="e.g. Ring, Necklace, etc.">
+          </div>
+          <div class="form-group">
+            <label>Category *</label>
+            <select id="g-category">
+              <option value="">Select category…</option>
+            </select>
+          </div>
+          <div class="form-group"><label>Badge (optional)</label><input id="g-badge"
+              placeholder="e.g. Featured, New, Rare"></div>
+          <div class="form-group"><label>Price *</label><input id="g-price" placeholder="e.g. Rs 250,000"></div>
+          <div class="form-group"><label>ID (numeric) (optional)</label><input id="g-id" type="number"
+              placeholder="Auto-assigned if blank"></div>
+          <div class="form-group full"><label>Description *</label><textarea id="g-desc" rows="4"
+              placeholder="Full description of the item…"></textarea></div>
+        </div>
+      </div>
+
+      <!-- Specs tab -->
+      <div id="tab-specs" style="display:none;">
+        <p style="font-size:.78rem;color:var(--ash);margin-bottom:14px;">Add key-value specification pairs (e.g. Weight
+          → 3.20 Carat)</p>
+        <div class="specs-grid" id="specs-rows"></div>
+        <button class="btn btn-outline btn-sm" style="margin-top:12px;" onclick="addSpecRow()">+ Add
+          Specification</button>
+      </div>
+
+      <!-- Images tab -->
+      <div id="tab-images" style="display:none;">
+        <p style="font-size:.78rem;color:var(--ash);margin-bottom:14px;">Upload images by dragging &amp; dropping,
+          tapping to browse, or entering a URL. The first image is the main display image.</p>
+
+        <!-- Drop Zone -->
+        <div id="img-drop-zone">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+            style="width:36px;height:36px;color:var(--silver);margin-bottom:10px;">
+            <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4" />
+            <polyline points="17 8 12 3 7 8" />
+            <line x1="12" y1="3" x2="12" y2="15" />
+          </svg>
+          <div style="font-size:.82rem;color:var(--ash);margin-bottom:4px;">Drag &amp; drop images here</div>
+          <div style="font-size:.72rem;color:var(--silver);margin-bottom:14px;">or</div>
+          <label class="btn btn-outline btn-sm" style="cursor:pointer;">
+            📁 Choose from Device
+            <input type="file" id="img-file-input" accept="image/*" multiple style="display:none;">
+          </label>
+        </div>
+
+        <div class="images-list" id="images-rows"></div>
+        <button class="btn btn-outline btn-sm" style="margin-top:12px;" onclick="addImageRow()">+ Add Image URL
+          manually</button>
+      </div>
+
+      <div style="display:flex;gap:10px;margin-top:28px;justify-content:flex-end;">
+        <button class="btn btn-outline" onclick="closeGemModal()">Cancel</button>
+        <button class="btn btn-gold" onclick="saveGem()">Save Piece</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- CATEGORY MODAL -->
+  <div class="modal-bg" id="cat-modal">
+    <div class="modal" style="max-width:440px;">
+      <div class="modal-head">
+        <div class="modal-title" id="cat-modal-title">Add Category</div>
+        <button class="modal-close" onclick="closeCatModal()">✕</button>
+      </div>
+      <div class="form-grid">
+        <div class="form-group full">
+          <label>Category ID *</label>
+          <input id="c-id" placeholder="e.g. emerald (lowercase, no spaces)">
+          <div class="form-hint">Used internally for filtering. Cannot be changed after saving.</div>
+        </div>
+        <div class="form-group full">
+          <label>Display Label *</label>
+          <input id="c-label" placeholder="e.g. Emerald">
+        </div>
+      </div>
+      <div style="display:flex;gap:10px;margin-top:24px;justify-content:flex-end;">
+        <button class="btn btn-outline" onclick="closeCatModal()">Cancel</button>
+        <button class="btn btn-gold" onclick="saveCategory()">Save Category</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- TESTIMONIAL MODAL -->
+  <div class="modal-bg" id="testi-modal">
+    <div class="modal" style="max-width:440px;">
+      <div class="modal-head">
+        <div class="modal-title" id="testi-modal-title">Add Testimonial</div>
+        <button class="modal-close" onclick="closeTestiModal()">✕</button>
+      </div>
+      <div class="form-grid">
+        <div class="form-group full">
+          <label>Author *</label>
+          <input id="t-author" placeholder="e.g. Priya M., Singapore">
+        </div>
+        <div class="form-group full">
+          <label>Review Text *</label>
+          <textarea id="t-text" rows="3" placeholder="Client's review..."></textarea>
+        </div>
+        <div class="form-group full">
+          <label>Item Reference</label>
+          <input id="t-gem" placeholder="e.g. Sapphire Ring or 3ct Ruby">
+        </div>
+        <div class="form-group full">
+          <label>Stars (1-5)</label>
+          <input id="t-stars" type="number" min="1" max="5" value="5">
+        </div>
+      </div>
+      <div style="display:flex;gap:10px;margin-top:24px;justify-content:flex-end;">
+        <button class="btn btn-outline" onclick="closeTestiModal()">Cancel</button>
+        <button class="btn btn-gold" onclick="saveTestimonial()">Save</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOAST -->
+  <div class="toast-wrap" id="toast-wrap"></div>
+
+  <!-- FIREBASE + ADMIN LOGIC -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+    import {
+      getFirestore, collection, getDocs, addDoc, setDoc, updateDoc, deleteDoc,
+      doc, query, orderBy, getDoc
+    } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+    import {
+      getAuth, signInWithEmailAndPassword, signOut, onAuthStateChanged
+    } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyAjXLPyrQP6DJECPJQ9pOiLtPsxf5lSeuY",
+      authDomain: "encroza.firebaseapp.com",
+      projectId: "encroza",
+      storageBucket: "encroza.firebasestorage.app",
+      messagingSenderId: "230289087937",
+      appId: "1:230289087937:web:4aeccc36cefbf516fce340",
+      measurementId: "G-69W808V3XZ"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+    const auth = getAuth(app);
+
+    // ── STATE ──
+    let gems = [];
+    let categories = [];
+    let testimonials = [];
+    let editingGemId = null; // Firestore doc ID
+    let editingCatId = null;
+    let editingTestiId = null;
+
+    // ── AUTH ──
+    onAuthStateChanged(auth, user => {
+      if (user) {
+        document.getElementById('auth-screen').style.display = 'none';
+        init();
+      } else {
+        document.getElementById('auth-screen').style.display = 'flex';
+      }
+    });
+
+    window.doLogin = async function () {
+      const email = document.getElementById('auth-email').value.trim();
+      const pw = document.getElementById('auth-pw').value;
+      const err = document.getElementById('auth-err');
+      err.textContent = '';
+      try {
+        await signInWithEmailAndPassword(auth, email, pw);
+      } catch (e) {
+        err.textContent = 'Invalid email or password.';
+      }
+    };
+
+    window.doLogout = async function () {
+      await signOut(auth);
+    };
+
+    // ── INIT ──
+    async function init() {
+      await Promise.all([loadCategories(), loadGems(), loadTestimonials(), loadHomepageSettings()]);
+      renderDashboard();
+      renderGemsTable();
+      renderCategoriesList();
+      renderTestiTable();
+    }
+
+    // ── LOAD ──
+    async function loadGems() {
+      try {
+        const snap = await getDocs(query(collection(db, 'gems'), orderBy('id')));
+        gems = snap.docs.map(d => ({ _docId: d.id, ...d.data() }));
+      } catch (e) {
+        console.error(e);
+        gems = [];
+      }
+    }
+
+    const FALLBACK_TESTIMONIALS = [
+      { author: "Priya M., Singapore", text: "The unheated blue sapphire I received was beyond description — the depth of colour and the GRS certification gave me complete confidence.", gem: "Blue Sapphire · 4.18ct", stars: 5 },
+      { author: "James K., London", text: "Encrozaa's transparency and the quality of their stones is simply unmatched. My padparadscha is a genuine treasure.", gem: "Padparadscha Sapphire · 2.85ct", stars: 5 },
+      { author: "Nadia R., Dubai", text: "Fast delivery, beautifully presented, and the stone was exactly as photographed. The alexandrite shows the most vivid colour change.", gem: "Alexandrite · 1.62ct", stars: 5 },
+      { author: "Daniel W., New York", text: "I purchased a Ceylon ruby for an engagement ring. The stone is magnificent — absolutely pigeon blood red with no treatment whatsoever.", gem: "Ceylon Ruby · 2.10ct", stars: 5 },
+      { author: "Amara S., Tokyo", text: "Exceptional service from start to finish. The star sapphire arrived with impeccable documentation and exceeded every expectation.", gem: "Star Sapphire · 5.40ct", stars: 5 },
+      { author: "Sofia M., Paris", text: "Buying certified gems online can be daunting, but Encrozaa made it effortless. The pink spinel is breathtaking — vivid and completely natural.", gem: "Pink Spinel · 1.75ct", stars: 5 }
+    ];
+
+    async function loadTestimonials() {
+      try {
+        let snap = await getDocs(collection(db, 'testimonials'));
+        if (snap.empty) {
+          console.log('Seeding initial testimonials...');
+          for (const t of FALLBACK_TESTIMONIALS) {
+            await addDoc(collection(db, 'testimonials'), { ...t, createdAt: Date.now() });
+          }
+          snap = await getDocs(collection(db, 'testimonials'));
+        }
+        testimonials = snap.docs.map(d => ({ _docId: d.id, ...d.data() }));
+      } catch (e) {
+        console.error(e);
+        testimonials = [];
+      }
+    }
+
+    async function loadCategories() {
+      try {
+        const snap = await getDocs(collection(db, 'categories'));
+        categories = snap.docs.map(d => ({ _docId: d.id, ...d.data() }));
+        // No default seeding — start with an empty collection
+      } catch (e) {
+        console.error(e);
+        categories = [];
+      }
+    }
+
+    // ── DASHBOARD ──
+    function renderDashboard() {
+      document.getElementById('stat-gems').textContent = gems.length;
+      document.getElementById('stat-cats').textContent = categories.length;
+      document.getElementById('stat-featured').textContent = gems.filter(g => g.badge === 'Featured').length;
+      document.getElementById('stat-rare').textContent = testimonials.length; // Reusing stat-rare box for Testimonials
+      document.querySelectorAll('.stat-card')[3].querySelector('.stat-label').textContent = 'Testimonials';
+
+      const recent = [...gems].reverse().slice(0, 6);
+      document.getElementById('recent-tbody').innerHTML = recent.length ? recent.map(g => `
+    <tr>
+      <td><img src="${(g.images || [])[0] || ''}" class="gem-thumb-mini" onerror="this.style.display='none'"></td>
+      <td><strong>${g.name || '—'}</strong></td>
+      <td><span class="cat-chip">${g.category || ''}</span></td>
+      <td>${g.price || '—'}</td>
+      <td>${g.badge ? `<span class="badge-mini">${g.badge}</span>` : '—'}</td>
+    </tr>
+  `).join('') : '<tr><td colspan="5" class="loading-row">No pieces yet.</td></tr>';
+    }
+
+    // ── GEMS TABLE ──
+    function renderGemsTable() {
+      document.getElementById('gems-tbody').innerHTML = gems.length ? gems.map(g => `
+    <tr>
+      <td><img src="${(g.images || [])[0] || ''}" class="gem-thumb-mini" onerror="this.style.display='none'"></td>
+      <td><strong>${g.name || '—'}</strong></td>
+      <td><span class="cat-chip">${g.category || ''}</span></td>
+      <td style="color:var(--ash);font-size:.78rem;">${g.cut || '—'}</td>
+      <td>${g.price || '—'}</td>
+      <td>${g.badge ? `<span class="badge-mini">${g.badge}</span>` : '—'}</td>
+      <td>
+        <div class="action-row">
+          <button class="btn btn-outline btn-sm" onclick="openGemModal('${g._docId}')">Edit</button>
+          <button class="btn btn-danger btn-sm" onclick="deleteGem('${g._docId}','${g.name}')">Delete</button>
+        </div>
+      </td>
+    </tr>
+  `).join('') : '<tr><td colspan="7" class="loading-row">No pieces yet. Click "+ Add Piece" to get started.</td></tr>';
+    }
+
+    // ── CATEGORIES LIST ──
+    function renderCategoriesList() {
+      document.getElementById('cats-list').innerHTML = categories.length ? categories.map(c => `
+    <div class="cat-item">
+      <div>
+        <div class="cat-item-label"><strong>${c.label || c._docId}</strong></div>
+        <div class="cat-item-id">id: ${c._docId}</div>
+      </div>
+      <div style="display:flex;gap:6px;margin-left:auto;">
+        <button class="btn btn-outline btn-sm" onclick="openCatModal('${c._docId}')">Edit</button>
+        <button class="btn btn-danger btn-sm" onclick="deleteCategory('${c._docId}')">Delete</button>
+      </div>
+    </div>
+  `).join('') : '<div class="loading-row">No categories yet.</div>';
+    }
+
+    // ── TESTIMONIALS TABLE ──
+    function renderTestiTable() {
+      document.getElementById('testi-tbody').innerHTML = testimonials.length ? testimonials.map(t => `
+    <tr>
+      <td><strong>${t.author || '—'}</strong></td>
+      <td style="max-width:300px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;" title="${t.text || ''}">${t.text || '—'}</td>
+      <td><span class="badge-mini">${t.gem || '—'}</span></td>
+      <td style="color:var(--gold);">${'★'.repeat(t.stars || 5)}</td>
+      <td>
+        <div class="action-row">
+          <button class="btn btn-outline btn-sm" onclick="openTestiModal('${t._docId}')">Edit</button>
+          <button class="btn btn-danger btn-sm" onclick="deleteTestimonial('${t._docId}')">Delete</button>
+        </div>
+      </td>
+    </tr>
+  `).join('') : '<tr><td colspan="5" class="loading-row">No testimonials yet. Click "+ Add Testimonial" to get started.</td></tr>';
+    }
+
+    // ── SECTION NAV ──
+    window.showSection = function (id, el) {
+      ['dashboard', 'gems', 'categories', 'homepage', 'testimonials'].forEach(s => {
+        document.getElementById('section-' + s).style.display = s === id ? '' : 'none';
+      });
+      document.querySelectorAll('.sidebar-link').forEach(l => l.classList.remove('active'));
+      if (el) el.classList.add('active');
+      if (id === 'homepage') renderHomepageSection();
+    };
+
+    // ── GEM MODAL ──
+    window.openGemModal = function (docId) {
+      editingGemId = docId;
+      const isEdit = !!docId;
+      document.getElementById('gem-modal-title').textContent = isEdit ? 'Edit Piece' : 'Add New Piece';
+
+      // Populate category select
+      const sel = document.getElementById('g-category');
+      sel.innerHTML = '<option value="">Select category…</option>' +
+        categories.map(c => `<option value="${c._docId}">${c.label || c._docId}</option>`).join('');
+
+      if (isEdit) {
+        const g = gems.find(x => x._docId === docId);
+        if (!g) return;
+        document.getElementById('g-name').value = g.name || '';
+        document.getElementById('g-cut').value = g.cut || '';
+        document.getElementById('g-category').value = g.category || '';
+        document.getElementById('g-badge').value = g.badge || '';
+        document.getElementById('g-price').value = g.price || '';
+        document.getElementById('g-id').value = g.id || '';
+        document.getElementById('g-desc').value = g.desc || '';
+
+        // specs
+        document.getElementById('specs-rows').innerHTML = '';
+        Object.entries(g.specs || {}).forEach(([k, v]) => addSpecRow(k, v));
+        if (!Object.keys(g.specs || {}).length) addSpecRow();
+
+        // images
+        document.getElementById('images-rows').innerHTML = '';
+        (g.images || []).forEach(url => {
+          if (url.startsWith('data:')) addFileRow(url, 'Uploaded image');
+          else addImageRow(url);
+        });
+        if (!(g.images || []).length) addImageRow();
+      } else {
+        ['g-name', 'g-cut', 'g-badge', 'g-price', 'g-desc'].forEach(id => document.getElementById(id).value = '');
+        document.getElementById('g-id').value = '';
+        document.getElementById('g-category').value = '';
+        document.getElementById('specs-rows').innerHTML = '';
+        addSpecRow('Weight', ''); addSpecRow('Certification', ''); addSpecRow('Treatment', ''); addSpecRow('Origin', ''); addSpecRow('Shape', ''); addSpecRow('Colour', '');
+        document.getElementById('images-rows').innerHTML = '';
+        addImageRow(); addImageRow(); addImageRow();
+      }
+
+      switchTab('basic', document.querySelector('.tab'));
+      document.getElementById('gem-modal').classList.add('open');
+    };
+
+    window.closeGemModal = () => document.getElementById('gem-modal').classList.remove('open');
+
+    window.switchTab = function (name, el) {
+      ['basic', 'specs', 'images'].forEach(t => {
+        document.getElementById('tab-' + t).style.display = t === name ? '' : 'none';
+      });
+      document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+      if (el) el.classList.add('active');
+    };
+
+    // ── TESTIMONIAL MODAL ──
+    window.openTestiModal = function (docId) {
+      editingTestiId = docId;
+      const isEdit = !!docId;
+      document.getElementById('testi-modal-title').textContent = isEdit ? 'Edit Testimonial' : 'Add Testimonial';
+
+      if (isEdit) {
+        const t = testimonials.find(x => x._docId === docId);
+        if (!t) return;
+        document.getElementById('t-author').value = t.author || '';
+        document.getElementById('t-text').value = t.text || '';
+        document.getElementById('t-gem').value = t.gem || '';
+        document.getElementById('t-stars').value = t.stars || 5;
+      } else {
+        document.getElementById('t-author').value = '';
+        document.getElementById('t-text').value = '';
+        document.getElementById('t-gem').value = '';
+        document.getElementById('t-stars').value = '5';
+      }
+
+      document.getElementById('testi-modal').classList.add('open');
+    };
+
+    window.closeTestiModal = () => document.getElementById('testi-modal').classList.remove('open');
+
+    window.addSpecRow = function (key = '', val = '') {
+      const row = document.createElement('div');
+      row.className = 'spec-row';
+      row.innerHTML = `
+    <input placeholder="Key (e.g. Weight)" value="${escHtml(key)}">
+    <input placeholder="Value (e.g. 3.20 Carat)" value="${escHtml(val)}">
+    <button class="btn btn-outline btn-sm" onclick="this.closest('.spec-row').remove()">✕</button>
+  `;
+      document.getElementById('specs-rows').appendChild(row);
+    };
+
+    // addImageRow: for manual URL entry
+    window.addImageRow = function (url = '') {
+      const row = document.createElement('div');
+      row.className = 'image-row url-row';
+      row.innerHTML = `
+    <div class="image-row-thumb-placeholder" id="">🔗</div>
+    <input placeholder="Paste image URL (https://…)" value="${escHtml(url)}" oninput="updateThumb(this)">
+    <button class="btn btn-outline btn-sm" style="padding:6px 10px;" onclick="this.closest('.image-row').remove()">✕</button>
+  `;
+      if (url) {
+        const img = document.createElement('img');
+        img.className = 'image-row-thumb';
+        img.src = url;
+        img.onerror = function () { this.style.display = 'none'; };
+        row.replaceChild(img, row.firstElementChild);
+      }
+      document.getElementById('images-rows').appendChild(row);
+    };
+
+    // makeFileRow: build a completed file row (called after FileReader finishes)
+    function makeFileRow(dataUrl, fileName) {
+      const row = document.createElement('div');
+      row.className = 'image-row file-row';
+      row.dataset.dataUrl = dataUrl;
+      row.innerHTML = `
+    <img class="image-row-thumb" src="${dataUrl}">
+    <div>
+      <div class="image-row-label">${escHtml(fileName)}</div>
+      <div class="image-row-sublabel">Uploaded from device</div>
+    </div>
+    <button class="btn btn-outline btn-sm" style="padding:6px 10px;" onclick="this.closest('.image-row').remove()">✕</button>
+  `;
+      return row;
+    }
+    // Keep backward-compat alias used by openGemModal edit path
+    function addFileRow(dataUrl, fileName) {
+      document.getElementById('images-rows').appendChild(makeFileRow(dataUrl, fileName));
+    }
+
+    window.updateThumb = function (inp) {
+      const row = inp.closest('.image-row');
+      const old = row.firstElementChild;
+      if (inp.value.trim()) {
+        const img = document.createElement('img');
+        img.className = 'image-row-thumb';
+        img.src = inp.value.trim();
+        img.onerror = function () { this.style.display = 'none'; };
+        row.replaceChild(img, old);
+      }
+    };
+
+    // ── FILE HANDLING ──
+    // Compress + resize an image File to a JPEG data URL small enough for Firestore.
+    // Max dimension: 1200px. Quality: 0.82 JPEG. Keeps aspect ratio.
+    function compressImage(file) {
+      return new Promise(function (resolve, reject) {
+        const reader = new FileReader();
+        reader.onerror = function () { reject(new Error('Failed to read ' + file.name)); };
+        reader.onload = function (e) {
+          const img = new Image();
+          img.onerror = function () { reject(new Error('Invalid image: ' + file.name)); };
+          img.onload = function () {
+            const MAX = 1200;
+            let w = img.naturalWidth;
+            let h = img.naturalHeight;
+            if (w > MAX || h > MAX) {
+              if (w >= h) { h = Math.round(h * MAX / w); w = MAX; }
+              else { w = Math.round(w * MAX / h); h = MAX; }
+            }
+            const canvas = document.createElement('canvas');
+            canvas.width = w; canvas.height = h;
+            const ctx = canvas.getContext('2d');
+            ctx.drawImage(img, 0, 0, w, h);
+            resolve(canvas.toDataURL('image/jpeg', 0.82));
+          };
+          img.src = e.target.result;
+        };
+        reader.readAsDataURL(file);
+      });
+    }
+
+    function handleImageFiles(files) {
+      const arr = Array.from(files).filter(f => f.type.startsWith('image/'));
+      if (!arr.length) { toast('Please select image files only.', 'error'); return; }
+
+      arr.forEach(function (file) {
+        const uid = Date.now() + Math.random().toString(36).slice(2);
+        const placeholder = document.createElement('div');
+        placeholder.className = 'upload-progress-row';
+        placeholder.innerHTML =
+          '<div class="upload-progress-icon">\uD83D\uDDBC\uFE0F</div>' +
+          '<div class="upload-progress-info">' +
+          '<div class="upload-progress-name">' + escHtml(file.name) + '</div>' +
+          '<div class="upload-progress-track"><div class="upload-progress-fill" id="fill-' + uid + '"></div></div>' +
+          '<div class="upload-progress-pct" id="pct-' + uid + '">Compressing\u2026</div>' +
+          '</div>';
+        document.getElementById('images-rows').appendChild(placeholder);
+
+        const fill = document.getElementById('fill-' + uid);
+        const pctEl = document.getElementById('pct-' + uid);
+
+        // Animate the bar while compressing (canvas work is synchronous but brief)
+        fill.style.width = '40%';
+        pctEl.textContent = 'Compressing\u2026';
+
+        compressImage(file).then(function (dataUrl) {
+          // Rough size check — Firestore doc limit ~1MB total, warn if one image > 700KB
+          const approxKB = Math.round(dataUrl.length * 0.75 / 1024);
+          fill.style.width = '100%';
+          pctEl.textContent = approxKB + ' KB';
+          setTimeout(function () {
+            placeholder.replaceWith(makeFileRow(dataUrl, file.name));
+            if (approxKB > 700) {
+              toast('Image "' + file.name + '" is still large (' + approxKB + ' KB). Consider using a URL instead.', 'error');
+            }
+          }, 220);
+        }).catch(function (err) {
+          placeholder.remove();
+          toast('Failed to process ' + file.name + ': ' + err.message, 'error');
+        });
+      });
+    }
+
+    // Wire up file input
+    (function wireImageControls() {
+      const fileInput = document.getElementById('img-file-input');
+      if (fileInput) {
+        fileInput.addEventListener('change', e => {
+          handleImageFiles(e.target.files);
+          // Reset so the same file(s) can be re-selected if needed
+          e.target.value = '';
+        });
+      }
+      const dropZone = document.getElementById('img-drop-zone');
+      if (dropZone) {
+        dropZone.addEventListener('dragover', e => { e.preventDefault(); dropZone.classList.add('drag-over'); });
+        dropZone.addEventListener('dragleave', () => dropZone.classList.remove('drag-over'));
+        dropZone.addEventListener('drop', e => {
+          e.preventDefault();
+          dropZone.classList.remove('drag-over');
+          handleImageFiles(e.dataTransfer.files);
+        });
+        // Clicking the drop zone opens the file picker ONLY if the click
+        // was NOT directly on the <label> or the hidden <input> inside it
+        // (those already trigger the picker natively — avoid double-open).
+        dropZone.addEventListener('click', e => {
+          if (e.target.closest('label') || e.target === fileInput) return;
+          if (fileInput) fileInput.click();
+        });
+      }
+    })();
+
+    window.saveGem = async function () {
+      const name = document.getElementById('g-name').value.trim();
+      const cut = document.getElementById('g-cut').value.trim();
+      const category = document.getElementById('g-category').value;
+      const badge = document.getElementById('g-badge').value.trim();
+      const price = document.getElementById('g-price').value.trim();
+      const desc = document.getElementById('g-desc').value.trim();
+      const idVal = parseInt(document.getElementById('g-id').value) || Date.now();
+
+      if (!name || !cut || !category || !price || !desc) { toast('Please fill in all required fields.', 'error'); return; }
+
+      const specs = {};
+      document.querySelectorAll('#specs-rows .spec-row').forEach(row => {
+        const [k, v] = row.querySelectorAll('input');
+        if (k.value.trim()) specs[k.value.trim()] = v.value.trim();
+      });
+
+      const images = [];
+      document.querySelectorAll('#images-rows .image-row').forEach(row => {
+        if (row.classList.contains('file-row')) {
+          // device-uploaded: use the data URL
+          if (row.dataset.dataUrl) images.push(row.dataset.dataUrl);
+        } else {
+          // url row
+          const val = row.querySelector('input')?.value.trim();
+          if (val) images.push(val);
+        }
+      });
+
+      const data = { id: idVal, name, cut, category, badge: badge || null, price, desc, specs, images };
+
+      try {
+        if (editingGemId) {
+          await updateDoc(doc(db, 'gems', editingGemId), data);
+          toast('Piece updated successfully!', 'success');
+        } else {
+          await addDoc(collection(db, 'gems'), data);
+          toast('Piece added successfully!', 'success');
+        }
+        closeGemModal();
+        await loadGems();
+        renderGemsTable();
+        renderDashboard();
+      } catch (e) {
+        console.error(e);
+        toast('Error saving piece: ' + e.message, 'error');
+      }
+    };
+
+    window.deleteGem = async function (docId, name) {
+      if (!confirm(`Delete "${name}"? This cannot be undone.`)) return;
+      try {
+        await deleteDoc(doc(db, 'gems', docId));
+        toast('Piece deleted.', 'success');
+        await loadGems();
+        renderGemsTable();
+        renderDashboard();
+      } catch (e) {
+        toast('Error deleting piece.', 'error');
+      }
+    };
+
+    window.seedDemoItems = async function () {
+      if (!confirm('This will delete all current items and replace them with demo gems and jewellery. Are you sure?')) return;
+      const btn = document.getElementById('btn-seed-items');
+      btn.disabled = true;
+      btn.textContent = 'Loading...';
+      try {
+        // Delete all current gems
+        for (let g of gems) {
+          await deleteDoc(doc(db, 'gems', g._docId));
+        }
+
+        const ITEMS_SEED = [
+          {
+            id: 1, category: 'sapphire', badge: 'Featured',
+            name: 'Royal Blue Sapphire', cut: 'Cushion Brilliant Mix Cut',
+            images: ['https://images.unsplash.com/photo-1599643478524-fb66f4568dbb?w=800&q=80', 'https://images.unsplash.com/photo-1605100804763-247f673f224e?w=800&q=80', 'https://images.unsplash.com/photo-1603561591411-07134e71a2a9?w=800&q=80'],
+            specs: { 'Weight': '3.20 Carat', 'Certification': 'GRS Certified', 'Treatment': 'Unheated', 'Origin': 'Ratnapura, SL', 'Shape': 'Cushion', 'Colour': 'Royal Blue' },
+            desc: 'Natural unheated blue sapphire, 3.20 carat, cushion shape brilliant mix cut. Rich royal blue saturation with excellent transparency.',
+            price: 'Rs 250,000'
+          },
+          {
+            id: 2, category: 'sapphire', badge: null,
+            name: 'Cornflower Blue Sapphire', cut: 'Oval Cut',
+            images: ['https://images.unsplash.com/photo-1588444837495-c6cfeb53f32d?w=800&q=80', 'https://images.unsplash.com/photo-1602752250015-52934bc45613?w=800&q=80', 'https://images.unsplash.com/photo-1596944924616-7b38e7cfac36?w=800&q=80'],
+            specs: { 'Weight': '2.15 Carat', 'Certification': 'CGL Certified', 'Treatment': 'Unheated', 'Origin': 'Ceylon', 'Shape': 'Oval', 'Colour': 'Cornflower Blue' },
+            desc: 'A stunning 2.15 carat cornflower blue sapphire. Vivid and bright color, perfect for an engagement ring.',
+            price: 'Rs 185,000'
+          },
+          {
+            id: 3, category: 'ruby', badge: 'Rare',
+            name: 'Ceylon Ruby', cut: 'Oval Brilliant Cut',
+            images: ['https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=800&q=80', 'https://images.unsplash.com/photo-1630019852942-f89202989a59?w=800&q=80', 'https://images.unsplash.com/photo-1588444837495-c6cfeb53f32d?w=800&q=80'],
+            specs: { 'Weight': '2.10 Carat', 'Certification': 'AGL Certified', 'Treatment': 'Unheated', 'Origin': 'Elahera, SL', 'Shape': 'Oval', 'Colour': 'Pigeon Blood' },
+            desc: 'Exceptional unheated Ceylon ruby with vivid pigeon blood red colour. AGL certified with full origin documentation.',
+            price: 'Rs 480,000'
+          },
+          {
+            id: 4, category: 'ruby', badge: null,
+            name: 'Vivid Red Ruby', cut: 'Cushion Cut',
+            images: ['https://images.unsplash.com/photo-1630019852942-f89202989a59?w=800&q=80', 'https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=800&q=80', 'https://images.unsplash.com/photo-1588444837495-c6cfeb53f32d?w=800&q=80'],
+            specs: { 'Weight': '1.55 Carat', 'Certification': 'GIA Certified', 'Treatment': 'Heated', 'Origin': 'Mozambique', 'Shape': 'Cushion', 'Colour': 'Vivid Red' },
+            desc: 'Bright and exceptionally clean Mozambique ruby displaying a deep, intense red hue.',
+            price: 'Rs 220,000'
+          },
+          {
+            id: 5, category: 'rare', badge: 'Collector',
+            name: 'Padparadscha Sapphire', cut: 'Round Brilliant Cut',
+            images: ['https://images.unsplash.com/photo-1611652022419-a9419f74343d?w=800&q=80', 'https://images.unsplash.com/photo-1605100804763-247f673f224e?w=800&q=80', 'https://images.unsplash.com/photo-1596944924616-7b38e7cfac36?w=800&q=80'],
+            specs: { 'Weight': '2.85 Carat', 'Certification': 'GRS Certified', 'Treatment': 'Unheated', 'Origin': 'Ratnapura, SL', 'Shape': 'Round', 'Colour': 'Pink-Orange' },
+            desc: 'Exquisite padparadscha sapphire displaying the coveted lotus-blossom sunset hue. GRS certified as genuine padparadscha.',
+            price: 'Rs 950,000'
+          },
+          {
+            id: 6, category: 'rare', badge: 'New',
+            name: 'Tsavorite Garnet', cut: 'Emerald Cut',
+            images: ['https://images.unsplash.com/photo-1602752250015-52934bc45613?w=800&q=80', 'https://images.unsplash.com/photo-1588444837495-c6cfeb53f32d?w=800&q=80', 'https://images.unsplash.com/photo-1599643477874-cedc4813589b?w=800&q=80'],
+            specs: { 'Weight': '3.50 Carat', 'Certification': 'CGL Certified', 'Treatment': 'Untreated', 'Origin': 'Kenya', 'Shape': 'Emerald', 'Colour': 'Vivid Green' },
+            desc: 'A magnificent Tsavorite Garnet with a neon green glow. Exceptionally clean and brilliant.',
+            price: 'Rs 310,000'
+          },
+          {
+            id: 7, category: 'rings', badge: 'Featured',
+            name: 'Sapphire Halo Ring', cut: 'Oval',
+            images: ['https://images.unsplash.com/photo-1605100804763-247f673f224e?w=800&q=80', 'https://images.unsplash.com/photo-1596944924616-7b38e7cfac36?w=800&q=80', 'https://images.unsplash.com/photo-1603561591411-07134e71a2a9?w=800&q=80'],
+            specs: { 'Material': '18k White Gold', 'Main Stone': 'Blue Sapphire', 'Carat': '2.50ct', 'Side Stones': 'Diamonds (0.5ct)' },
+            desc: 'An exquisite 18k white gold ring featuring a breathtaking 2.50ct oval Ceylon blue sapphire, encircled by a brilliant halo of pavé diamonds.',
+            price: 'Rs 450,000'
+          },
+          {
+            id: 8, category: 'rings', badge: null,
+            name: 'Solitaire Engagement Ring', cut: 'Round Brilliant',
+            images: ['https://images.unsplash.com/photo-1600003014755-ba31aa59c4b6?w=800&q=80', 'https://images.unsplash.com/photo-1599643478524-fb66f4568dbb?w=800&q=80', 'https://images.unsplash.com/photo-1601121141461-9d6647bca1ed?w=800&q=80'],
+            specs: { 'Material': 'Platinum', 'Main Stone': 'Diamond', 'Carat': '1.50ct', 'Clarity': 'VVS1', 'Color': 'D' },
+            desc: 'The ultimate symbol of love. A flawless 1.50ct D-color round brilliant diamond set in a classic 6-prong platinum mounting.',
+            price: 'Rs 850,000'
+          },
+          {
+            id: 9, category: 'necklaces', badge: 'New',
+            name: 'Diamond Tennis Necklace', cut: 'Round Brilliant',
+            images: ['https://images.unsplash.com/photo-1599643478524-fb66f4568dbb?w=800&q=80', 'https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=800&q=80', 'https://images.unsplash.com/photo-1601121141461-9d6647bca1ed?w=800&q=80'],
+            specs: { 'Material': '18k White Gold', 'Main Stone': 'Diamonds', 'Total Carat': '10.00ct', 'Length': '16 inches' },
+            desc: 'A timeless classic. This breathtaking tennis necklace is meticulously crafted in 18k white gold, featuring a continuous strand of 10 carats of exceptionally graded round brilliant diamonds.',
+            price: 'Rs 1,200,000'
+          },
+          {
+            id: 10, category: 'necklaces', badge: 'Featured',
+            name: 'Pearl & Diamond Pendant', cut: 'Round',
+            images: ['https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=800&q=80', 'https://images.unsplash.com/photo-1599643478524-fb66f4568dbb?w=800&q=80', 'https://images.unsplash.com/photo-1601121141461-9d6647bca1ed?w=800&q=80'],
+            specs: { 'Material': '18k Rose Gold', 'Main Stone': 'South Sea Pearl', 'Pearl Size': '12mm' },
+            desc: 'A lustrous 12mm South Sea pearl suspended from an 18k rose gold chain, accented with a delicate diamond pavé bail.',
+            price: 'Rs 195,000'
+          },
+          {
+            id: 11, category: 'earrings', badge: 'Classic',
+            name: 'Ruby Drop Earrings', cut: 'Pear',
+            images: ['https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=800&q=80', 'https://images.unsplash.com/photo-1630019852942-f89202989a59?w=800&q=80', 'https://images.unsplash.com/photo-1588444837495-c6cfeb53f32d?w=800&q=80'],
+            specs: { 'Material': '18k Yellow Gold', 'Main Stone': 'Pigeon Blood Ruby', 'Total Carat': '3.20ct' },
+            desc: 'Elegant drop earrings showcasing a matched pair of vivid pigeon blood rubies, elegantly set in 18k yellow gold with delicate diamond accents.',
+            price: 'Rs 380,000'
+          },
+          {
+            id: 12, category: 'earrings', badge: null,
+            name: 'Diamond Stud Earrings', cut: 'Round Brilliant',
+            images: ['https://images.unsplash.com/photo-1596944924616-7b38e7cfac36?w=800&q=80', 'https://images.unsplash.com/photo-1603561591411-07134e71a2a9?w=800&q=80', 'https://images.unsplash.com/photo-1605100804763-247f673f224e?w=800&q=80'],
+            specs: { 'Material': '18k White Gold', 'Main Stone': 'Diamond', 'Total Carat': '2.00ct', 'Clarity': 'VS1' },
+            desc: 'Classic diamond stud earrings. Each earring features a brilliant 1.00ct diamond securely set in a 4-prong white gold basket.',
+            price: 'Rs 650,000'
+          },
+          {
+            id: 13, category: 'bracelets', badge: 'Rare',
+            name: 'Emerald & Gold Bangle', cut: 'Emerald Cut',
+            images: ['https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=800&q=80', 'https://images.unsplash.com/photo-1599643477874-cedc4813589b?w=800&q=80', 'https://images.unsplash.com/photo-1602752250015-52934bc45613?w=800&q=80'],
+            specs: { 'Material': '18k Yellow Gold', 'Main Stone': 'Zambian Emerald', 'Total Carat': '4.50ct' },
+            desc: 'A striking statement piece. Solid 18k yellow gold bangle set with a magnificent 4.50ct emerald-cut Zambian emerald of the deepest green hue.',
+            price: 'Rs 550,000'
+          },
+          {
+            id: 14, category: 'bracelets', badge: null,
+            name: 'Diamond Tennis Bracelet', cut: 'Round',
+            images: ['https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=800&q=80', 'https://images.unsplash.com/photo-1599643478524-fb66f4568dbb?w=800&q=80', 'https://images.unsplash.com/photo-1601121141461-9d6647bca1ed?w=800&q=80'],
+            specs: { 'Material': '18k White Gold', 'Main Stone': 'Diamonds', 'Total Carat': '5.00ct', 'Length': '7 inches' },
+            desc: 'The essential tennis bracelet. A continuous line of 5 carats of brilliant-cut diamonds, set securely in an elegant 18k white gold mounting.',
+            price: 'Rs 800,000'
+          }
+        ];
+
+        for (let s of ITEMS_SEED) {
+          await addDoc(collection(db, 'gems'), s);
+        }
+
+        // Delete all current categories
+        for (let c of categories) {
+          await deleteDoc(doc(db, 'categories', c._docId));
+        }
+
+        // Add new categories
+        const CAT_SEED = [
+          { id: 'sapphire', label: 'Sapphire Gems' },
+          { id: 'ruby', label: 'Ruby Gems' },
+          { id: 'rare', label: 'Rare Gemstones' },
+          { id: 'rings', label: 'Rings' },
+          { id: 'necklaces', label: 'Necklaces' },
+          { id: 'earrings', label: 'Earrings' },
+          { id: 'bracelets', label: 'Bracelets' }
+        ];
+
+        for (let c of CAT_SEED) {
+          await setDoc(doc(db, 'categories', c.id), { label: c.label });
+        }
+
+        toast('Demo items loaded successfully!', 'success');
+        await loadGems();
+        await loadCategories();
+        renderGemsTable();
+        renderDashboard();
+      } catch (err) {
+        console.error(err);
+        toast('Error seeding pieces.', 'error');
+      } finally {
+        btn.disabled = false;
+        btn.textContent = 'Load Demo Items';
+      }
+    };
+
+    // ── CATEGORY MODAL ──
+    window.openCatModal = function (docId) {
+      editingCatId = docId;
+      document.getElementById('cat-modal-title').textContent = docId ? 'Edit Category' : 'Add Category';
+      if (docId) {
+        const c = categories.find(x => x._docId === docId);
+        document.getElementById('c-id').value = c?._docId || '';
+        document.getElementById('c-label').value = c?.label || '';
+        document.getElementById('c-id').disabled = true;
+      } else {
+        document.getElementById('c-id').value = '';
+        document.getElementById('c-label').value = '';
+        document.getElementById('c-id').disabled = false;
+      }
+      document.getElementById('cat-modal').classList.add('open');
+    };
+
+    window.closeCatModal = () => document.getElementById('cat-modal').classList.remove('open');
+
+    window.saveCategory = async function () {
+      const id = document.getElementById('c-id').value.trim().toLowerCase().replace(/\s+/g, '_');
+      const label = document.getElementById('c-label').value.trim();
+      if (!id || !label) { toast('ID and label are required.', 'error'); return; }
+      try {
+        await setDoc(doc(db, 'categories', id), { label }, { merge: true });
+        toast('Category saved!', 'success');
+        closeCatModal();
+        await loadCategories();
+        renderCategoriesList();
+        renderDashboard();
+      } catch (e) {
+        toast('Error saving category.', 'error');
+      }
+    };
+
+    window.deleteCategory = async function (docId) {
+      if (!confirm(`Delete category "${docId}"? Pieces in this category will remain but become unfiltered.`)) return;
+      try {
+        await deleteDoc(doc(db, 'categories', docId));
+        toast('Category deleted.', 'success');
+        await loadCategories();
+        renderCategoriesList();
+      } catch (e) {
+        toast('Error deleting category.', 'error');
+      }
+    };
+
+    // ── TOAST ──
+    window.toast = function (msg, type = '') {
+      const wrap = document.getElementById('toast-wrap');
+      const el = document.createElement('div');
+      el.className = 'toast ' + (type || '');
+      el.textContent = msg;
+      wrap.appendChild(el);
+      requestAnimationFrame(() => { requestAnimationFrame(() => el.classList.add('show')); });
+      setTimeout(() => { el.classList.remove('show'); setTimeout(() => el.remove(), 400); }, 3200);
+    };
+
+    // ── HELPER ──
+    function escHtml(str) { return String(str).replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
+
+    // ── HOMEPAGE FEATURED GEMS ──
+    // Visibility: stored as `hidden: true/false` directly on each gem doc (uses gems collection the admin already has write access to).
+    // Order: stored in settings/homepage { featuredOrder: [docId, docId, ...] } — only saved when user clicks "Save Order".
+
+    let hpOrder = []; // Firestore _docId strings
+
+    async function loadHomepageSettings() {
+      try {
+        const snap = await getDoc(doc(db, 'settings', 'homepage'));
+        if (snap.exists()) {
+          hpOrder = snap.data().featuredOrder || [];
+        }
+      } catch (e) {
+        hpOrder = [];
+      }
+    }
+
+    function renderHomepageSection() {
+      const list = document.getElementById('homepage-gems-list');
+
+      // Order: saved order first, then remaining gems
+      const inOrder = hpOrder.map(id => gems.find(g => g._docId === id)).filter(Boolean);
+      const rest = gems.filter(g => !hpOrder.includes(g._docId));
+      const orderedGems = [...inOrder, ...rest];
+
+      let visibleCount = 0;
+      list.innerHTML = '';
+
+      orderedGems.forEach(g => {
+        const isVisible = !g.hidden;
+        if (isVisible) visibleCount++;
+
+        const row = document.createElement('div');
+        row.className = 'hp-gem-row';
+        row.dataset.docId = g._docId;
+        row.draggable = true;
+        row.innerHTML = `
+      <div class="hp-drag-handle" title="Drag to reorder">⠿</div>
+      <img class="hp-gem-thumb" src="${(g.images || [])[0] || ''}" onerror="this.style.background='#eee';this.src=''">
+      <div class="hp-gem-info">
+        <div class="hp-gem-name">${g.name}</div>
+        <div class="hp-gem-meta">${g.category} · ${g.price}</div>
+      </div>
+      <label class="hp-toggle" title="Show on homepage">
+        <input type="checkbox" ${isVisible ? 'checked' : ''} onchange="toggleHpGem('${g._docId}', this.checked)">
+        <span class="hp-toggle-slider"></span>
+      </label>
+      <div class="hp-position-badge ${isVisible ? '' : 'hidden'}">${isVisible ? visibleCount : '—'}</div>
+    `;
+
+        row.addEventListener('dragstart', hpDragStart);
+        row.addEventListener('dragover', hpDragOver);
+        row.addEventListener('dragleave', hpDragLeave);
+        row.addEventListener('drop', hpDrop);
+        row.addEventListener('dragend', hpDragEnd);
+
+        list.appendChild(row);
+      });
+    }
+
+    // Toggle saves `hidden` flag directly on the gem document — no separate collection needed
+    window.toggleHpGem = async function (docId, checked) {
+      try {
+        await updateDoc(doc(db, 'gems', docId), { hidden: !checked });
+        const g = gems.find(x => x._docId === docId);
+        if (g) g.hidden = !checked;
+        renderHomepageSection();
+        toast(checked ? 'Piece shown on homepage.' : 'Piece hidden from homepage.', 'success');
+      } catch (e) {
+        toast('Error updating visibility: ' + e.message, 'error');
+      }
+    };
+
+    // Drag-and-drop
+    let dragSrcEl = null;
+    function hpDragStart(e) {
+      dragSrcEl = this;
+      this.classList.add('dragging');
+      e.dataTransfer.effectAllowed = 'move';
+    }
+    function hpDragOver(e) {
+      e.preventDefault();
+      e.dataTransfer.dropEffect = 'move';
+      if (this !== dragSrcEl) this.classList.add('drag-over');
+    }
+    function hpDragLeave() { this.classList.remove('drag-over'); }
+    function hpDrop(e) {
+      e.stopPropagation();
+      this.classList.remove('drag-over');
+      if (dragSrcEl !== this) {
+        const list = document.getElementById('homepage-gems-list');
+        const rows = Array.from(list.children);
+        const srcIdx = rows.indexOf(dragSrcEl);
+        const tgtIdx = rows.indexOf(this);
+        if (srcIdx < tgtIdx) list.insertBefore(dragSrcEl, this.nextSibling);
+        else list.insertBefore(dragSrcEl, this);
+        hpOrder = Array.from(list.children).map(r => r.dataset.docId);
+        renderHomepageSection();
+      }
+    }
+    function hpDragEnd() {
+      this.classList.remove('dragging');
+      document.querySelectorAll('.hp-gem-row').forEach(r => r.classList.remove('drag-over'));
+    }
+
+    window.saveHomepageOrder = async function () {
+      const list = document.getElementById('homepage-gems-list');
+      const domOrder = Array.from(list.children).map(r => r.dataset.docId);
+      try {
+        await setDoc(doc(db, 'settings', 'homepage'), { featuredOrder: domOrder });
+        toast('Homepage order saved!', 'success');
+      } catch (e) {
+        toast('Error saving order: ' + e.message, 'error');
+      }
+    };
+
+    // ── TESTIMONIAL CRUD ──
+    window.saveTestimonial = async function () {
+      const author = document.getElementById('t-author').value.trim();
+      const text = document.getElementById('t-text').value.trim();
+      const gem = document.getElementById('t-gem').value.trim();
+      const stars = parseInt(document.getElementById('t-stars').value, 10) || 5;
+
+      if (!author || !text) {
+        toast('Author and Text are required.', 'error');
+        return;
+      }
+
+      const payload = { author, text, gem, stars, updatedAt: Date.now() };
+
+      try {
+        if (editingTestiId) {
+          await updateDoc(doc(db, 'testimonials', editingTestiId), payload);
+          toast('Testimonial updated successfully.', 'success');
+        } else {
+          payload.createdAt = Date.now();
+          await addDoc(collection(db, 'testimonials'), payload);
+          toast('Testimonial added successfully.', 'success');
+        }
+        closeTestiModal();
+        await loadTestimonials();
+        renderTestiTable();
+        renderDashboard();
+      } catch (err) {
+        console.error(err);
+        toast('Failed to save testimonial: ' + err.message, 'error');
+      }
+    };
+
+    window.deleteTestimonial = async function (id) {
+      if (!confirm('Are you sure you want to delete this testimonial?')) return;
+      try {
+        await deleteDoc(doc(db, 'testimonials', id));
+        toast('Testimonial deleted.', 'success');
+        await loadTestimonials();
+        renderTestiTable();
+        renderDashboard();
+      } catch (e) {
+        console.error(e);
+        toast('Failed to delete: ' + e.message, 'error');
+      }
+    };
+
+    // ── KEYBOARD ──
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Enter' && document.getElementById('auth-screen').style.display !== 'none') doLogin();
+      if (e.key === 'Escape') {
+        document.getElementById('gem-modal').classList.remove('open');
+        document.getElementById('cat-modal').classList.remove('open');
+        document.getElementById('testi-modal').classList.remove('open');
+      }
+    });
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Collection — ENCROZAA </title>
+<link rel="icon" type="image/x-icon" href="assets/img/560360537_17845627944583430_485295394664470441_n-modified.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/styles.css">
+
+
+<meta name="description" content="Explore our exclusive collection of fine jewellery, featuring rare sapphires, rubies, and investment-grade gems.">
+<link rel="canonical" href="https://encrozaa.com/collection.html">
+<meta property="og:title" content="Collection — ENCROZAA">
+<meta property="og:description" content="Explore our exclusive collection of fine jewellery, featuring rare sapphires, rubies, and investment-grade gems.">
+<meta property="og:url" content="https://encrozaa.com/collection.html">
+<meta name="twitter:title" content="Collection — ENCROZAA">
+<meta name="twitter:description" content="Explore our exclusive collection of fine jewellery, featuring rare sapphires, rubies, and investment-grade gems.">
+<meta name="keywords" content="fine jewellery, Ceylon sapphires, unheated gemstones, engagement rings, Encrozaa, Sri Lanka gems, luxury jewelry">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://encrozaa.com/assets/img/560360537_17845627944583430_485295394664470441_n-modified.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://encrozaa.com/assets/img/560360537_17845627944583430_485295394664470441_n-modified.png">
+
+</head>
+<body>
+
+<div id="preloader">
+  <div class="pre-logo">ENCROZAA</div>
+  <div class="pre-line"><div class="pre-fill"></div></div>
+</div>
+
+<div id="cursor"></div>
+<div id="cursor-ring"></div>
+
+<nav>
+  <a href="index.html" class="nav-logo">ENCROZAA</a>
+  <button class="nav-toggle" id="navToggle"><span></span><span></span><span></span></button>
+  <div class="nav-links" id="navLinks">
+    <a href="index.html">Home</a>
+    <a href="about.html">Heritage</a>
+    <a href="collection.html" class="active">Collection</a>
+    <a href="process.html">Process</a>
+    <a href="index.html#testimonials">Reviews</a>
+  </div>
+  <a href="https://wa.me/94771094687" class="nav-wa"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.124.558 4.121 1.535 5.855L.057 23.882a.5.5 0 00.606.61l6.239-1.637A11.94 11.94 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.897a9.866 9.866 0 01-5.034-1.378l-.36-.214-3.733.979.999-3.65-.235-.375A9.865 9.865 0 012.103 12C2.103 6.533 6.533 2.103 12 2.103S21.897 6.533 21.897 12 17.467 21.897 12 21.897z"/></svg>WhatsApp</a>
+</nav>
+
+<header class="about-hero">
+  <div class="about-hero-img1"></div>
+  <div class="about-hero-content reveal">
+    <div class="section-label" style="justify-content: center; color: var(--champagne);">Established 2018</div>
+    <h1 class="section-title" style="color: #faf8f5; font-size: clamp(3rem, 8vw, 5rem);">Our <em>Collection</em></h1>
+  </div>
+</header>
+
+
+
+<section id="shop">
+  <div class="shop-header reveal">
+    <div>
+      <div class="section-label">The Collection</div>
+      <h2 class="section-title">Exceptional <em>Stones</em></h2>
+    </div>
+    <div class="shop-filters" id="filter-bar">
+      <button class="filter-btn active" data-cat="all" onclick="filterGems('all',this)">All</button>
+    </div>
+  </div>
+  
+  <div class="collection-layout">
+    <aside class="collection-sidebar">
+      <div class="sidebar-search">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+        <input type="text" id="collection-search" placeholder="Search gems..." autocomplete="off">
+        <button class="search-clear" id="search-clear" onclick="clearSearch()">✕</button>
+      </div>
+      
+      <div class="adv-filters-vert" id="adv-filters">
+        <div class="adv-filter-group">
+          <label class="adv-filter-label">Sort By</label>
+          <select class="adv-filter-input" id="adv-sort" onchange="applyFilters()">
+            <option value="newest">Newest Arrivals</option>
+            <option value="price-asc">Price: Low to High</option>
+            <option value="price-desc">Price: High to Low</option>
+          </select>
+        </div>
+        <div class="adv-filter-group">
+          <label class="adv-filter-label">Material (Jewellery)</label>
+          <select class="adv-filter-input" id="adv-material" onchange="applyFilters()">
+            <option value="all">All Materials</option>
+          </select>
+        </div>
+        <div class="adv-filter-group">
+          <label class="adv-filter-label">Main Stone / Type</label>
+          <select class="adv-filter-input" id="adv-stone" onchange="applyFilters()">
+            <option value="all">All Stones</option>
+          </select>
+        </div>
+        <div class="adv-filter-group">
+          <label class="adv-filter-label">Shape</label>
+          <select class="adv-filter-input" id="adv-shape" onchange="applyFilters()">
+            <option value="all">All Shapes</option>
+          </select>
+        </div>
+        <div class="adv-filter-group">
+          <label class="adv-filter-label">Color (Gems)</label>
+          <select class="adv-filter-input" id="adv-color" onchange="applyFilters()">
+            <option value="all">All Colors</option>
+          </select>
+        </div>
+        <div class="adv-filter-group">
+          <label class="adv-filter-label">Price Range (Rs)</label>
+          <div class="adv-filter-row">
+            <input type="number" class="adv-filter-input" id="adv-min-price" placeholder="Min" oninput="applyFilters()">
+            <span>-</span>
+            <input type="number" class="adv-filter-input" id="adv-max-price" placeholder="Max" oninput="applyFilters()">
+          </div>
+        </div>
+        <div class="adv-filter-group">
+          <label class="adv-filter-label">Weight (Carat)</label>
+          <div class="adv-filter-row">
+            <input type="number" class="adv-filter-input" id="adv-min-carat" placeholder="Min" step="0.1" oninput="applyFilters()">
+            <span>-</span>
+            <input type="number" class="adv-filter-input" id="adv-max-carat" placeholder="Max" step="0.1" oninput="applyFilters()">
+          </div>
+        </div>
+        <button class="adv-reset-btn" onclick="resetAdvancedFilters()">Reset Filters</button>
+      </div>
+    </aside>
+
+    <main class="collection-main">
+      <div class="search-results-count" id="search-results-count"></div>
+      <div class="gems-grid" id="gems-grid">
+        <div class="gems-loading">Loading collection…</div>
+      </div>
+    </main>
+  </div>
+</section>
+
+<footer>
+  <div>
+    <div class="footer-brand">ENCROZAA</div>
+    <div class="footer-tagline">Ceylon's finest gems · Colombo, Sri Lanka</div>
+  </div>
+  <div class="footer-right">
+    <div class="footer-socials">
+      <a href="#" target="_blank">Instagram</a>
+      <a href="#" target="_blank">Facebook</a>
+      <a href="https://wa.me/94771094687" target="_blank">WhatsApp</a>
+    </div>
+    <div class="footer-contact">
+      <a href="mailto:info@encrozaa.com">info@encrozaa.com</a>
+      &nbsp;·&nbsp;
+      <a href="https://wa.me/94771094687">+94 77 109 4687</a>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy">© 2025 Encrozaa. All rights reserved.</div>
+      <div class="footer-credit">Designed &amp; built by <a href="https://yehen-silva.vercel.app/" target="_blank">Yehen Silva</a></div>
+    </div>
+  </div>
+</footer>
+
+<!-- LIGHTBOX -->
+<div id="lightbox">
+  <div class="lb-inner" id="lb-inner">
+    <div class="lb-left">
+      <div class="lb-gallery-main"><img id="lb-main-img" src="" alt=""></div>
+      <div class="lb-gallery-nav" id="lb-thumbs"></div>
+    </div>
+    <div class="lb-details" id="lb-details"></div>
+    <button class="lb-close" onclick="closeLightbox()">✕</button>
+  </div>
+</div>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+import { getFirestore, collection, getDocs, query, orderBy } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyAjXLPyrQP6DJECPJQ9pOiLtPsxf5lSeuY",
+  authDomain: "encroza.firebaseapp.com",
+  projectId: "encroza",
+  storageBucket: "encroza.firebasestorage.app",
+  messagingSenderId: "230289087937",
+  appId: "1:230289087937:web:4aeccc36cefbf516fce340",
+  measurementId: "G-69W808V3XZ"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+// ── CURSOR ──
+const cur=document.getElementById('cursor'),ring=document.getElementById('cursor-ring');
+document.addEventListener('mousemove',e=>{cur.style.left=e.clientX+'px';cur.style.top=e.clientY+'px';ring.style.left=e.clientX+'px';ring.style.top=e.clientY+'px';});
+
+// ── PRELOADER ──
+window.addEventListener('load',()=>{setTimeout(()=>{const p=document.getElementById('preloader');p.style.opacity='0';p.style.transition='opacity .6s';setTimeout(()=>p.style.display='none',600);},1500);});
+
+// ── REVEAL ──
+const obs=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('in');}),{threshold:0.1});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+
+// ── STATE ──
+let gems = [];
+let categories = [];
+let currentFilter = 'all';
+let currentSearch = '';
+const sliders = {};
+
+// ── SEARCH ──
+const searchInput = document.getElementById('collection-search');
+const searchClear = document.getElementById('search-clear');
+const searchCount = document.getElementById('search-results-count');
+
+searchInput.addEventListener('input', function() {
+  currentSearch = this.value.trim().toLowerCase();
+  searchClear.classList.toggle('visible', currentSearch.length > 0);
+  renderGems(currentFilter);
+});
+
+window.clearSearch = function() {
+  searchInput.value = '';
+  currentSearch = '';
+  searchClear.classList.remove('visible');
+  renderGems(currentFilter);
+  searchInput.focus();
+};
+
+function gemMatchesSearch(g, q) {
+  if (!q) return true;
+  const haystack = [
+    g.name, g.cut, g.category, g.desc, g.badge,
+    ...Object.values(g.specs || {})
+  ].join(' ').toLowerCase();
+  return haystack.includes(q);
+}
+
+// ── ADVANCED FILTERS LOGIC ──
+function getNumericPrice(priceStr) {
+  if (!priceStr) return 0;
+  const match = priceStr.replace(/,/g, '').match(/[\d.]+/);
+  return match ? parseFloat(match[0]) : 0;
+}
+
+function getNumericCarat(weightStr) {
+  if (!weightStr) return 0;
+  const match = weightStr.match(/[\d.]+/);
+  return match ? parseFloat(match[0]) : 0;
+}
+
+function populateAdvancedDropdowns() {
+  const materials = new Set();
+  const stones = new Set();
+  const shapes = new Set();
+  const colors = new Set();
+  gems.forEach(g => {
+    if (g.specs && g.specs['Material']) materials.add(g.specs['Material'].trim());
+    if (g.specs && g.specs['Main Stone']) stones.add(g.specs['Main Stone'].trim());
+    if (g.specs && g.specs['Shape']) shapes.add(g.specs['Shape'].trim());
+    if (g.specs && g.specs['Colour']) colors.add(g.specs['Colour'].trim());
+  });
+
+  const materialSelect = document.getElementById('adv-material');
+  materialSelect.innerHTML = '<option value="all">All Materials</option>';
+  Array.from(materials).sort().forEach(s => {
+    materialSelect.innerHTML += `<option value="${s}">${s}</option>`;
+  });
+
+  const stoneSelect = document.getElementById('adv-stone');
+  stoneSelect.innerHTML = '<option value="all">All Stones</option>';
+  Array.from(stones).sort().forEach(c => {
+    stoneSelect.innerHTML += `<option value="${c}">${c}</option>`;
+  });
+
+  const shapeSelect = document.getElementById('adv-shape');
+  shapeSelect.innerHTML = '<option value="all">All Shapes</option>';
+  Array.from(shapes).sort().forEach(s => {
+    shapeSelect.innerHTML += `<option value="${s}">${s}</option>`;
+  });
+
+  const colorSelect = document.getElementById('adv-color');
+  colorSelect.innerHTML = '<option value="all">All Colors</option>';
+  Array.from(colors).sort().forEach(c => {
+    colorSelect.innerHTML += `<option value="${c}">${c}</option>`;
+  });
+}
+
+window.applyFilters = function() {
+  renderGems(currentFilter);
+};
+
+window.resetAdvancedFilters = function() {
+  document.getElementById('adv-sort').value = 'newest';
+  document.getElementById('adv-material').value = 'all';
+  document.getElementById('adv-stone').value = 'all';
+  document.getElementById('adv-shape').value = 'all';
+  document.getElementById('adv-color').value = 'all';
+  document.getElementById('adv-min-price').value = '';
+  document.getElementById('adv-max-price').value = '';
+  document.getElementById('adv-min-carat').value = '';
+  document.getElementById('adv-max-carat').value = '';
+  applyFilters();
+};
+
+// ── LOAD FROM FIREBASE ──
+async function loadCollection() {
+  try {
+    const [gemsSnap, catsSnap] = await Promise.all([
+      getDocs(query(collection(db, 'gems'), orderBy('id'))),
+      getDocs(collection(db, 'categories'))
+    ]);
+
+    categories = !catsSnap.empty
+      ? catsSnap.docs.map(d => ({ id: d.id, ...d.data() }))
+      : [
+          { id: 'sapphire', label: 'Sapphires' },
+          { id: 'ruby', label: 'Rubies' },
+          { id: 'rings', label: 'Rings' },
+          { id: 'necklaces', label: 'Necklaces' },
+          { id: 'earrings', label: 'Earrings' },
+          { id: 'bracelets', label: 'Bracelets' },
+          { id: 'rare', label: 'Rare Finds' }
+        ];
+
+    gems = gemsSnap.docs.map(d => ({ firestoreId: d.id, ...d.data() }));
+    buildFilterBar();
+    populateAdvancedDropdowns();
+    renderGems('all');
+  } catch(err) {
+    console.warn('Firebase error:', err);
+    gems = []; categories = [];
+    buildFilterBar(); populateAdvancedDropdowns(); renderGems('all');
+  }
+}
+
+function buildFilterBar() {
+  const bar = document.getElementById('filter-bar');
+  bar.innerHTML = `<button class="filter-btn active" data-cat="all" onclick="filterGems('all',this)">All</button>`;
+  categories.forEach(cat => {
+    const btn = document.createElement('button');
+    btn.className = 'filter-btn';
+    btn.dataset.cat = cat.id;
+    btn.textContent = cat.label;
+    btn.onclick = function(){ filterGems(cat.id, this); };
+    bar.appendChild(btn);
+  });
+}
+
+window.filterGems = function(cat, btn) {
+  document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  currentFilter = cat;
+  renderGems(cat);
+};
+
+function renderGems(filter) {
+  const grid = document.getElementById('gems-grid');
+  let list = filter === 'all' ? gems : gems.filter(g => g.category === filter);
+
+  // Apply search filter
+  if (currentSearch) {
+    list = list.filter(g => gemMatchesSearch(g, currentSearch));
+  }
+
+  // Apply advanced filters
+  const material = document.getElementById('adv-material').value;
+  const stone = document.getElementById('adv-stone').value;
+  const shape = document.getElementById('adv-shape').value;
+  const color = document.getElementById('adv-color').value;
+  const minPrice = parseFloat(document.getElementById('adv-min-price').value);
+  const maxPrice = parseFloat(document.getElementById('adv-max-price').value);
+  const minCarat = parseFloat(document.getElementById('adv-min-carat').value);
+  const maxCarat = parseFloat(document.getElementById('adv-max-carat').value);
+
+  list = list.filter(g => {
+    if (material !== 'all' && (!g.specs || g.specs['Material'] !== material)) return false;
+    if (stone !== 'all' && (!g.specs || g.specs['Main Stone'] !== stone)) return false;
+    if (shape !== 'all' && (!g.specs || g.specs['Shape'] !== shape)) return false;
+    if (color !== 'all' && (!g.specs || g.specs['Colour'] !== color)) return false;
+    
+    const price = getNumericPrice(g.price);
+    if (!isNaN(minPrice) && price < minPrice) return false;
+    if (!isNaN(maxPrice) && price > maxPrice) return false;
+
+    const carat = getNumericCarat(g.specs && g.specs['Weight']);
+    if (!isNaN(minCarat) && carat < minCarat) return false;
+    if (!isNaN(maxCarat) && carat > maxCarat) return false;
+
+    return true;
+  });
+
+  // Apply sorting
+  const sort = document.getElementById('adv-sort').value;
+  if (sort === 'price-asc') {
+    list.sort((a, b) => getNumericPrice(a.price) - getNumericPrice(b.price));
+  } else if (sort === 'price-desc') {
+    list.sort((a, b) => getNumericPrice(b.price) - getNumericPrice(a.price));
+  } else {
+    // Newest is default (assuming loaded order is newest, or fallback to ID)
+    // The query orders by 'id' ascending, so we'll just reverse it for 'newest'
+    // Actually, let's keep the original array order unless sorting by price
+  }
+
+  // Update results count
+  if (currentSearch) {
+    searchCount.textContent = list.length === 0
+      ? 'No results found'
+      : `${list.length} item${list.length === 1 ? '' : 's'} found`;
+  } else {
+    searchCount.textContent = '';
+  }
+
+  if (list.length === 0) {
+    grid.innerHTML = `<div class="gems-loading">${currentSearch ? `No items matching "${currentSearch}"` : 'No items found in this category.'}</div>`;
+    return;
+  }
+
+  grid.innerHTML = list.map(g => {
+    const slides = (g.images||[]).map((s, idx) => `
+      <div class="slide"><img src="${s}" alt="${g.name}" loading="lazy" data-slide="${idx}"></div>
+    `).join('');
+    const dots = (g.images||[]).map((_, i) => `
+      <div class="gem-dot${i===0?' active':''}" onclick="goSlide(${g.id},${i},event)"></div>
+    `).join('');
+    const specs = Object.entries(g.specs||{}).slice(0,4).map(([k,v])=>`
+      <div class="gem-spec"><div class="gem-spec-label">${k}</div><div class="gem-spec-val">${v}</div></div>
+    `).join('');
+    const badge = g.badge ? `<div class="gem-badge">${g.badge}</div>` : '';
+
+    return `
+      <div class="gem-card" data-id="${g.id}">
+        <div class="gem-images">
+          <div class="slides" id="slides-${g.id}">${slides}</div>
+          ${badge}
+          <div class="gem-dots" id="dots-${g.id}">${dots}</div>
+          <div class="gem-arrows">
+            <button class="gem-arrow" onclick="prevSlide(${g.id},event)">&#8249;</button>
+            <button class="gem-arrow" onclick="nextSlide(${g.id},event)">&#8250;</button>
+          </div>
+        </div>
+        <div class="gem-info">
+          <div class="gem-name">${g.name}</div>
+          <div class="gem-cut">${g.cut}</div>
+          <div class="gem-specs">${specs}</div>
+          <div class="gem-desc">${(g.desc||'').substring(0,115)}…</div>
+          <div class="gem-footer">
+            <div class="gem-price"><span>Starting from</span>${g.price}</div>
+            <button class="gem-buy" onclick="openLightbox(${g.id})">View Details</button>
+          </div>
+        </div>
+      </div>
+    `;
+  }).join('');
+
+  list.forEach(g => sliders[g.id] = 0);
+
+  setTimeout(() => {
+    grid.querySelectorAll('.gem-card').forEach((el,i) => {
+      el.style.opacity='0'; el.style.transform='translateY(16px)';
+      el.style.transition=`opacity .5s ease ${i*.07}s, transform .5s ease ${i*.07}s`;
+      setTimeout(()=>{el.style.opacity='1';el.style.transform='none';},30);
+    });
+  },10);
+
+  grid.querySelectorAll('.gem-images .slide img').forEach(img => {
+    img.addEventListener('click', function(){
+      const card = img.closest('.gem-card');
+      if(!card) return;
+      openLightbox(parseInt(card.dataset.id,10), parseInt(img.dataset.slide,10)||0);
+    });
+  });
+}
+
+window.goSlide = function(id,idx,e){
+  if(e)e.stopPropagation();
+  sliders[id]=idx;
+  const sl=document.getElementById('slides-'+id),dt=document.getElementById('dots-'+id);
+  if(sl)sl.style.transform=`translateX(-${idx*100}%)`;
+  if(dt)dt.querySelectorAll('.gem-dot').forEach((d,i)=>d.classList.toggle('active',i===idx));
+};
+window.nextSlide = function(id,e){
+  if(e)e.stopPropagation();
+  const g=gems.find(x=>x.id===id);
+  if(g)window.goSlide(id,(sliders[id]+1)%g.images.length);
+};
+window.prevSlide = function(id,e){
+  if(e)e.stopPropagation();
+  const g=gems.find(x=>x.id===id);
+  if(g)window.goSlide(id,(sliders[id]-1+g.images.length)%g.images.length);
+};
+
+// ── LIGHTBOX ──
+const COLOUR_MAP={'royal blue':'#1a3a6e','blue':'#1a5cb5','pigeon blood':'#9b1c2e','red':'#c0392b','pink':'#d4538e','vivid pink':'#d4538e','green':'#1a6e3a','teal':'#0f6e56','mermaid teal':'#0d6e6e','yellow':'#c9a200','vivid yellow':'#c9a200','orange':'#c96b00','pink-orange':'#c96040','honey brown':'#8b5e2a','electric blue':'#0a4a8f','blue-grey':'#4a6070','purple':'#6a2fb5','violet':'#5a2295','green / red':'#2e7d32'};
+function colourSwatch(val){const key=val.toLowerCase();for(const[k,hex]of Object.entries(COLOUR_MAP)){if(key.includes(k))return`<span class="gem-spec-swatch" style="background:${hex}"></span>`;}return'';}
+
+window.openLightbox = function(id, startIdx) {
+  const g = gems.find(x=>x.id===id);
+  if(!g){ console.warn('Gem not found:', id); return; }
+  const idx = startIdx || 0;
+  document.getElementById('lb-main-img').src = g.images[idx] || '';
+  document.getElementById('lb-thumbs').innerHTML = (g.images||[]).map((s,i)=>
+    `<div class="lb-thumb${i===idx?' active':''}" onclick="lbGoImg(${id},${i})"><img src="${s}" loading="lazy"></div>`
+  ).join('');
+  const specs = Object.entries(g.specs||{}).map(([k,v])=>
+    `<div class="lb-spec-item"><div class="lb-spec-label">${k}</div><div class="lb-spec-val">${k.toLowerCase().includes('colour')||k.toLowerCase().includes('color')?colourSwatch(v):''}${v}</div></div>`
+  ).join('');
+  const wa = waLink(g.name, g.price);
+  const waIcon = `<svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" fill="#fff"/></svg>`;
+  document.getElementById('lb-details').innerHTML = `
+    <div class="lb-gem-name">${g.name}</div>
+    <div class="lb-gem-cut">${g.cut}</div>
+    <div class="lb-specs">${specs}</div>
+    <div class="lb-desc">${g.desc||''}</div>
+    <div class="lb-price-row">
+      <div class="lb-price-wrap"><div class="lb-price-sub">Price</div><div class="lb-price">${g.price}</div></div>
+      <a href="${wa}" target="_blank" class="lb-enquire">${waIcon}Enquire on WhatsApp</a>
+    </div>`;
+  document.getElementById('lightbox').classList.add('open');
+  document.body.style.overflow='hidden';
+};
+
+window.lbGoImg = function(id,i){
+  const g=gems.find(x=>x.id===id);
+  if(!g)return;
+  document.getElementById('lb-main-img').src=g.images[i];
+  document.querySelectorAll('.lb-thumb').forEach((t,ti)=>t.classList.toggle('active',ti===i));
+};
+
+window.closeLightbox = function(){
+  document.getElementById('lightbox').classList.remove('open');
+  document.body.style.overflow='';
+};
+
+document.getElementById('lightbox').addEventListener('click',function(e){
+  if(e.target===this) window.closeLightbox();
+});
+
+function waLink(name,price){
+  const msg=encodeURIComponent(`Hello, I'm interested in the ${name} (${price}) from your collection. Could you provide more details?`);
+  return `https://wa.me/94771094687?text=${msg}`;
+}
+
+window.waLink = waLink;
+
+loadCollection();
+
+const navToggle = document.getElementById('navToggle');
+const navLinks = document.getElementById('navLinks');
+navToggle.addEventListener('click', () => {
+  navLinks.classList.toggle('active');
+  navToggle.classList.toggle('open');
+});
+</script>
+</body>
+</html>
